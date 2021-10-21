@@ -148,10 +148,12 @@ function draw_sky( context, w, h )
    /* ---- background, blue if sun up, black otherwise */
    context.clearRect( 0, 0, w, h );
    context.globalCompositeOperation = "source-over";
+   
    context.fillStyle = bgcolor;  // planet[ 2 ].pos.visible ? "#182448" : "#000000";
    context.beginPath();
    context.arc( w / 2, h / 2, w / 2, 0, 2 * Math.PI );
-
+   // context.rect(w/2, h/2, w*2, h*2)
+   // context.arc()
    context.closePath();
    context.fill();
    if ( !clipped ) {

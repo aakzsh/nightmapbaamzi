@@ -19,16 +19,16 @@ def image():
     image_b64 = request.values['imageBase64']
     
     image_PIL = Image.open(BytesIO(base64.b64decode(image_b64.split(",")[1])))
-    image_PIL.save('output/10.png')
+    image_PIL.save('output/20.png')
 
     return ''
 
 
 @app.route('/get_image', methods = ['GET'])
 def get_image():
-    
+    image_id = request.form.get('image_id')
 
     return ''
    
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, threaded = True)
