@@ -24,20 +24,25 @@ db = firestore.client()
 
 bucket = storage.bucket()
 
-@app.route('/code=<code>', methods = ['GET'])
-def index(code): 
-    print(code)       
-    return render_template('index.html', lat = 30, lng = 70, code=code)
+@app.route('/', methods = ['GET'])
+def index(): 
+    code = request.args.get("code")
+    lat = request.args.get("lat")
+    lng = request.args.get("lng")
+      
+    # print(code,lat,lng)
+    return render_template('index.html', lat = int(lat), lng = int(lng), code=code)
 
 @app.route('/image', methods = ['POST'])
 def image():
     print("here")
     image_b64 = request.values['imageBase64']
-    # print(image_b64)
-    doc_ref = db.collection(u'room').document(u'HEHEHE') #add the dynamic code here
-    doc_ref.update({
-    u'url': str(image_b64).split(",")[1],
+    code = request.values['code']
+    print(code)
+    db.collection('room').document(f'{code}').set({
+        u'url': str(image_b64).split(",")[1],
     })
+    
     print("success")
     # image_PIL = Image.open(BytesIO(base64.b64decode(image_b64.split(",")[1])))
     # img_id = str(uuid.uuid4())

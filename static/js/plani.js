@@ -256,14 +256,17 @@ function saveImage()
    console.log('trynna save')
    var link = document.createElement('a');
    var canvas = document.getElementById("planicanvas");
-
+   var roomCodeDiv = document.getElementById("room_code");
+   const code = roomCodeDiv.innerText
    var dataUrl = canvas.toDataURL();
    console.log(dataUrl)
-
+   console.log(code)
    $.ajax({
       type: "POST",
       url: "/image",
+
       data: {
+         code : code,
          imageBase64: dataUrl
       }
    }).done(function() {
