@@ -25,6 +25,10 @@ db = firestore.client()
 bucket = storage.bucket()
 
 @app.route('/', methods = ['GET'])
+def start(): 
+    return render_template('index.html')
+
+@app.route('/night', methods = ['GET'])
 def index(): 
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     code = request.args.get("code")
@@ -49,7 +53,7 @@ def index():
     # date = 'June 20 1998'
       
     # print(code,lat,lng)
-    return render_template('index.html', lat = int(lat), lng = int(lng), code=code, date=date)
+    return render_template('homee.html', lat = int(lat), lng = int(lng), code=code, date=date)
 
 @app.route('/image', methods = ['POST'])
 def image():
