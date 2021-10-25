@@ -24,12 +24,12 @@ db = firestore.client()
 
 bucket = storage.bucket()
 
-@app.route('/', methods = ['GET'])
-def start(): 
+@app.route('/')
+def index(): 
     return render_template('index.html')
 
 @app.route('/night', methods = ['GET'])
-def index(): 
+def start(): 
     months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     code = request.args.get("code")
     lat = request.args.get("lat")
