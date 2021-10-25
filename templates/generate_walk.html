@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <meta property="og:site_name" content="Snapchat" />
+    <meta property="og:title" content="The Fastest Way to Share a Moment!" />
+    <!-- <meta property="snapchat:sticker" content="https://mianuddin.github.io/creative-kit-web-sample/images/cool-cat-sticker-creation.png"/> -->
+  </head>
+
+  <body>
+    <!-- Other Page HTML -->
+ <div class="snapchat-creative-kit-share share-button"  data-theme="dark">
+    <button
+      class="class1 class2 snapchat-share-button"
+    data-share-url="/walk_stats/<{{name}}>/<{{steps_today}}>/<{{total_steps}}>/<{{level}}>"
+    >
+      Share on Snapchat
+    </button>
+
+    <!-- Other Page HTML -->
+
+    <script>
+      // Load the SDK asynchronously
+      (function (d, s, id) {
+        var js,
+          sjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://sdk.snapkit.com/js/v1/create.js";
+        sjs.parentNode.insertBefore(js, sjs);
+      })(document, "script", "snapkit-creative-kit-sdk");
+
+      window.snapKitInit = function () {
+        snap.creativekit.initalizeShareButtons(
+          document.getElementsByClassName("snapchat-share-button")
+        );
+      };
+    </script>
+  </body>
+</html>
