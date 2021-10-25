@@ -14,7 +14,7 @@ var ck_conlines = true;
 
 
 window.addEventListener('DOMContentLoaded', e => {
-   console.log("loaded")
+   
    canvasApp();
    get_user_obs();
    saveImage();
@@ -112,7 +112,7 @@ function draw_moon( context )
 {
    context.globalCompositeOperation = "source-over";
    var i = Math.floor(( Astro.raddeg( moon.phase ) + 180 ) / 12 );
-   context.drawImage( immoons, i * 16, 0, 16, 16, moon.pos.x - 8, moon.pos.y - 8, 16, 16 );
+   // context.drawImage( immoons, i * 16, 0, 16, 16, moon.pos.x - 8, moon.pos.y - 8, 16, 16 );
    context.globalCompositeOperation = "lighter";
    context.fillStyle = "#FFF0E0";
    context.font = "12px Sans-Serif";

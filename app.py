@@ -30,16 +30,22 @@ def index():
 def image():
     print("here")
     image_b64 = request.values['imageBase64']
-    
-    image_PIL = Image.open(BytesIO(base64.b64decode(image_b64.split(",")[1])))
-    img_id = str(uuid.uuid4())
-    image_PIL.save(f"{img_id}.png")
 
-    blob = bucket.blob(f"{img_id}.png")
-    imgpath = f"E:\\nightmapbaamzi\\{img_id}.png"
-    with open(imgpath, 'rb') as my_file:
-        blob.upload_from_file(my_file)
-    print(blob.public_url)
+    img_id = str(uuid.uuid4())
+    print(img_id)
+    db.collection('room').document(f'{img_id}').set({
+        "img_data" : image_b64
+    })
+    
+    # image_PIL = Image.open(BytesIO(base64.b64decode(image_b64.split(",")[1])))
+    # image_PIL.save(f"{img_id}.png")
+
+    # blob = bucket.blob(f"{img_id}.png")
+    # imgpath = f"E:\\nightmapbaamzi\\{img_id}.png"
+    # with open(imgpath, 'rb') as my_file:
+    #     blob.upload_from_file(my_file)
+    # blob.make_public()
+    # print(blob.public_url)
     return ''
 
 
