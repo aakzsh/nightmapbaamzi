@@ -23,7 +23,7 @@
       <table>
          <tbody><tr>
              <td>refresh</td>
-            <td colspan="3">Date and time <input id="user_date" size="36" onchange="get_user_obs()" value="Thu Feb 22 2018 14:13:07 GMT-0500" type="text">
+            <!-- <td colspan="3">Date and time <input id="user_date" size="36" onchange="get_user_obs()" value="Thu Feb 22 2018 14:13:07 GMT-0500" type="text"> -->
             <input id="user_dec" value="&lt;" onclick="dec_button()" type="button">
             <input id="user_inc" value="&gt;" onclick="inc_button()" type="button">
             <input id="geoloc" value="Use My Location" onclick="getGeoPos()" type="button">
@@ -46,6 +46,7 @@
             <td id="room_code">{{code}}</td>
             <td id="user_lat">{{lat}}</td>
             <td id="user_lon">{{lng}}</td>
+            <td id="user_date">{{date}}</td>
          <td><input id="user_dsos" value="1" onchange="get_user_obs()" checked="checked" type="checkbox"> DSOs &nbsp; &nbsp;
          <input id="user_starlab" value="0" onchange="get_user_obs()" type="checkbox"> Star names</td>
          <td><input id="user_conline" value="1" onchange="get_user_obs()" checked="checked" type="checkbox"> Constellation lines</td>

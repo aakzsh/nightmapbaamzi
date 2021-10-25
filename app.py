@@ -26,12 +26,30 @@ bucket = storage.bucket()
 
 @app.route('/', methods = ['GET'])
 def index(): 
+    months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     code = request.args.get("code")
     lat = request.args.get("lat")
     lng = request.args.get("lng")
+    dt = request.args.get("time")
+
+    if(dt == "now"):
+        date = "now"
+    else:
+        sp_dt = dt.split("-")
+        y = int(sp_dt[0])
+        m = int(sp_dt[1])
+        d = int(sp_dt[2])
+        t = sp_dt[3]
+        month = months[m-1]
+
+        date = f"{month} {d} {y} {t}"
+    # lat = 90
+    # lng = 90
+    # code = "ll"
+    # date = 'June 20 1998'
       
     # print(code,lat,lng)
-    return render_template('index.html', lat = int(lat), lng = int(lng), code=code)
+    return render_template('index.html', lat = int(lat), lng = int(lng), code=code, date=date)
 
 @app.route('/image', methods = ['POST'])
 def image():

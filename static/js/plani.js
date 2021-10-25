@@ -284,8 +284,16 @@ function set_user_obs()
    var idso = document.getElementById( "user_dsos" );
    var clin = document.getElementById( "user_conline" );
 
-   d = now.getDate();
-   dt.value = d.toString().slice( 0, 33 );
+   if(dt.innerText == "now"){
+      d = now.getDate()
+      dt.innerText = d.toString().slice( 0, 33 )
+
+   } else {
+
+      d = Date.parse(dt.innerText);
+      // dt.innerText = d;
+   }
+
    var lonval = parseInt(lon.innerText);
    var latval = parseInt(lat.innerText)
    lonval = now.getLonDegrees();
@@ -306,15 +314,20 @@ function get_user_obs()
    var clab = document.getElementById( "user_conlab" );
    var idso = document.getElementById( "user_dsos" );
    var clin = document.getElementById( "user_conline" );
+ 
 
-   var n = Date.parse( dt.value );
+   
+
+   var n = Date.parse( dt.innerText );
+  
+   console.log("date is"+n)
    if ( isNaN( n )) {
-      alert( "Your browser doesn't think\n'" + dt.value + "'\nis a valid date." );
+      alert( "Your browser doesn't think\n'" + dt.innerText + "'\nis a valid date." );
       set_user_obs();
       return;
    }
    var d = new Date( n );
-   console.log(now)
+   console.log(d)
    now.setDate( d );
 
    if ( parseInt(lon.innerText) >= -180 && parseInt(lon.innerText) < 360 )
