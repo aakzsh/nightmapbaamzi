@@ -3,6 +3,8 @@
    text-align: center;
 }
 
+
+
 .unsupported {
    font-family: Helvetica;
    color: #F44;
@@ -18,3 +20,8 @@ table {
 #planicanvas{ 
   width: 44%;
   height:44%;
+ background-color: white;
+ border-radius: 50%;
+}
+
+
