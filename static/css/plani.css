@@ -3,6 +3,11 @@
    text-align: center;
 }
 
+
+body {
+   /* background-color: aqua; */
+   background-color: rgb(2, 10, 29);
+}
 .unsupported {
    font-family: Helvetica;
    color: #F44;
@@ -18,3 +23,8 @@ table {
 #planicanvas{ 
   width: 44%;
   height:44%;
+ background-color: white;
+ border-radius: 50%;
+}
+
+
