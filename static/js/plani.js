@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', e => {
    
    canvasApp();
    get_user_obs();
-   // saveImage();
+   saveImage();
 })
 
 
