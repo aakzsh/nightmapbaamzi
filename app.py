@@ -35,7 +35,7 @@ def start():
     lat = request.args.get("lat")
     lng = request.args.get("lng")
     dt = request.args.get("time")
-
+    print(lat,lng)
     if(dt == "now"):
         date = "now"
     else:
@@ -47,13 +47,14 @@ def start():
         month = months[m-1]
 
         date = f"{month} {d} {y} {t}"
+        
     # lat = 90
     # lng = 90
     # code = "ll"
     # date = 'June 20 1998'
       
-    # print(code,lat,lng)
-    return render_template('homee.html', lat = int(lat), lng = int(lng), code=code, date=date)
+    
+    return render_template('homee.html', lat = float(lat), lng = float(lng), code=code, date=date)
 
 @app.route('/image', methods = ['POST'])
 def image():
