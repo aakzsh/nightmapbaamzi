@@ -5,6 +5,7 @@ import base64
 import re
 from io import BytesIO, StringIO
 import cv2
+import os
 
 import firebase_admin
 from firebase_admin import credentials
@@ -62,21 +63,33 @@ def image():
     image_b64 = request.values['imageBase64']
     code = request.values['code']
     print(code)
-    db.collection('room').document(f'{code}').set({
-        u'url': str(image_b64).split(",")[1],
-    })
     
-    print("success")
-    # image_PIL = Image.open(BytesIO(base64.b64decode(image_b64.split(",")[1])))
+    # print("success")
+    image_PIL = Image.open(BytesIO(base64.b64decode(image_b64.split(",")[1])))
     # img_id = str(uuid.uuid4())
-    # image_PIL.save(f"{img_id}.png")
+    image_PIL.save(f"output/{code}.png")
+    img = Image.open(f"output/{code}.png")
 
+    b = Image.open("bg.png")
+
+    b.paste(img, (0, 0), img)
+    b.save(f'output/{code}-op.png',"PNG")
+
+    with open(f"output/{code}-op.png", "rb") as img_file:
+        b64_string = base64.b64encode(img_file.read())
     # blob = bucket.blob(f"{img_id}.png")
     # imgpath = f"E:\\nightmapbaamzi\\{img_id}.png"
     # with open(imgpath, 'rb') as my_file:
     #     blob.upload_from_file(my_file)
     # print(blob.public_url)
-
+    db.collection('room').document(f'{code}').set({
+        u'url': str(b64_string)[2:-1],
+    })
+    print('success')
+    for file in os.listdir('output/'):
+        print(file)
+        if file.endswith('.png'):
+            os.remove(f'output/{file}')
     return ''
 
 
