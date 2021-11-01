@@ -106,5 +106,10 @@ def walk_stats():
 def meditation_stats(name,total_time):
     return render_template('meditation_stats.html', name= name, total_time=total_time)
 
+
+@app.route('/hehe')
+def hehe():
+    return render_template('hehe.html')
+
 if __name__ == "__main__":
     app.run(debug=True, threaded = True)
