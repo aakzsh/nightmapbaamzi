@@ -100,7 +100,7 @@ def get_image():
 
 @app.route('/walk_stats')
 def walk_stats():
-    return render_template('walk_stats.html',  apna_url = "https://media.discordapp.net/attachments/873911486488121344/904815646288777286/image_search_1635791787512.jpg")
+    return render_template('walk_stats.html',  apna_url = "https://cdn.discordapp.com/attachments/873911486488121344/902228923612545114/image_7-removebg-preview.png")
    
 @app.route('/meditation_stats/<name>/<total_time>')
 def meditation_stats(name,total_time):
