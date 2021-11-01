@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:site_name" content="Snapchat" />
+    <meta property="og:title" content="The Fastest Way to Share a Moment!" />
+    <script>
+          var meta = document.createElement('meta');
+meta.property = "snap:sticker";
+meta.content = '{{apna_url}}'
+document.getElementsByTagName('head')[0].appendChild(meta);
+
+    </script>
+
+    <title>hehe</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+
+    <p>{{apna_url}}</p>
+    <img src={{apna_url}} alt="">
+    <div class="snapchat-creative-kit-share share-button"  data-theme="dark">
+        <button
+          class="class1 class2 snapchat-share-button"
+        data-share-url={{apna_url}}
+        >
+          Share on Snapchat
+        </button>
+        
+    
+        <!-- Other Page HTML -->
+    
+        <script>
+          // Load the SDK asynchronously
+        console.log('{{apna_url}}')
+
+
+          
+          (function (d, s, id) {
+            var js,
+              sjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://sdk.snapkit.com/js/v1/create.js";
+            sjs.parentNode.insertBefore(js, sjs);
+          })(document, "script", "snapkit-creative-kit-sdk");
+    
+          window.snapKitInit = function () {
+            snap.creativekit.initalizeShareButtons(
+              document.getElementsByClassName("snapchat-share-button")
+            );
+          };
+        </script>
+    
+</body>
+</html>

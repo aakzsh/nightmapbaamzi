@@ -111,5 +111,9 @@ def meditation_stats(name,total_time):
 def hehe():
     return render_template('hehe.html')
 
+@app.route('/baamzi')
+def baamzi():
+    return render_template('baamzi.html')
+
 if __name__ == "__main__":
     app.run(debug=True, threaded = True)
