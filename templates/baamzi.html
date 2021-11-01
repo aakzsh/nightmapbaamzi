@@ -6,13 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:site_name" content="Snapchat" />
     <meta property="og:title" content="The Fastest Way to Share a Moment!" />
-    <script>
-          var meta = document.createElement('meta');
-meta.property = "snap:sticker";
-meta.content = '{{apna_url}}'
-document.getElementsByTagName('head')[0].appendChild(meta);
-
-    </script>
+    <meta property="snap:sticker" content="{{apna_url}}"/>/
 
     <title>hehe</title>
     <link rel="stylesheet" href="../static/css/style.css">
@@ -34,9 +28,6 @@ document.getElementsByTagName('head')[0].appendChild(meta);
     
         <script>
           // Load the SDK asynchronously
-        console.log('{{apna_url}}')
-
-
           
           (function (d, s, id) {
             var js,
