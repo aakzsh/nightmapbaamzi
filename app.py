@@ -82,7 +82,7 @@ def image():
     # with open(imgpath, 'rb') as my_file:
     #     blob.upload_from_file(my_file)
     # print(blob.public_url)
-    db.collection('room').document(f'{code}').set({
+    db.collection('room').document(f'{code}').update({
         u'url': str(b64_string)[2:-1],
     })
     print('success')
