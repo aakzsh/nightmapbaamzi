@@ -5,7 +5,7 @@ import base64
 import re
 from io import BytesIO, StringIO
 import cv2
-import os
+from PIL import Image, ImageFont, ImageDraw #type:ignore
 
 import firebase_admin
 from firebase_admin import credentials
@@ -63,33 +63,21 @@ def image():
     image_b64 = request.values['imageBase64']
     code = request.values['code']
     print(code)
+    db.collection('room').document(f'{code}').update({
+        u'url': str(image_b64).split(",")[1],
+    })
     
-    # print("success")
-    image_PIL = Image.open(BytesIO(base64.b64decode(image_b64.split(",")[1])))
+    print("success")
+    # image_PIL = Image.open(BytesIO(base64.b64decode(image_b64.split(",")[1])))
     # img_id = str(uuid.uuid4())
-    image_PIL.save(f"output/{code}.png")
-    img = Image.open(f"output/{code}.png")
+    # image_PIL.save(f"{img_id}.png")
 
-    b = Image.open("bg.png")
-
-    b.paste(img, (0, 0), img)
-    b.save(f'output/{code}-op.png',"PNG")
-
-    with open(f"output/{code}-op.png", "rb") as img_file:
-        b64_string = base64.b64encode(img_file.read())
     # blob = bucket.blob(f"{img_id}.png")
     # imgpath = f"E:\\nightmapbaamzi\\{img_id}.png"
     # with open(imgpath, 'rb') as my_file:
     #     blob.upload_from_file(my_file)
     # print(blob.public_url)
-    db.collection('room').document(f'{code}').update({
-        u'url': str(b64_string)[2:-1],
-    })
-    print('success')
-    for file in os.listdir('output/'):
-        print(file)
-        if file.endswith('.png'):
-            os.remove(f'output/{file}')
+
     return ''
 
 
@@ -98,18 +86,26 @@ def get_image():
     image_id = request.form.get('image_id')
     return ''
 
-@app.route('/walk_stats')
-def walk_stats():
-    return render_template('walk_stats.html',  apna_url = "https://cdn.discordapp.com/attachments/873911486488121344/902228923612545114/image_7-removebg-preview.png")
+@app.route('/walk_stats/<steps>/<username>')
+def walk_stats(steps, username):
+    my_image = Image.open("static/strawberry.png")
+    title_font = ImageFont.truetype('static/Poppins-Medium.ttf', 25)
+    
+    image_editable = ImageDraw.Draw(my_image)
+    image_editable.text((20,40), steps, ((255,255,255)), font=title_font)
+    my_image.save("result.png")
+    fileName = "result.png"
+    bucket = storage.bucket()
+    blob = bucket.blob(username+fileName)
+    blob.upload_from_filename(fileName)
+
+# Opt : if you want to make public access from the URL
+    blob.make_public()
+    return render_template('walk_stats.html',url=blob.public_url)
    
 @app.route('/meditation_stats/<name>/<total_time>')
 def meditation_stats(name,total_time):
     return render_template('meditation_stats.html', name= name, total_time=total_time)
-
-
-@app.route('/hehe')
-def hehe():
-    return render_template('hehe.html')
 
 if __name__ == "__main__":
     app.run(debug=True, threaded = True)
