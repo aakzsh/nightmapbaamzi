@@ -98,9 +98,9 @@ def get_image():
     image_id = request.form.get('image_id')
     return ''
 
-@app.route('/walk_stats/<name>/<steps_today>/<total_steps>/<level>')
-def walk_stats(name,steps_today,total_steps,level):
-    return render_template('walk_stats.html', name= name, steps_today=steps_today, total_steps=total_steps,level=level)
+@app.route('/walk_stats')
+def walk_stats():
+    return render_template('walk_stats.html',  apna_url = "https://media.discordapp.net/attachments/873911486488121344/904815646288777286/image_search_1635791787512.jpg")
    
 @app.route('/meditation_stats/<name>/<total_time>')
 def meditation_stats(name,total_time):
